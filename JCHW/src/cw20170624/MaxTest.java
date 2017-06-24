@@ -9,6 +9,8 @@ public class MaxTest {
 		System.out.println(UnitTest.assertNotEquals(MathUtils.max(-100,20), -100));
 		System.out.println(UnitTest.assertEquals(MathUtils.max(Integer.MAX_VALUE,Integer.MIN_VALUE), Integer.MAX_VALUE));
 		System.out.println(UnitTest.assertNotEquals(MathUtils.max(Integer.MAX_VALUE,Integer.MIN_VALUE), Integer.MIN_VALUE));
+		System.out.println(UnitTest.assertEquals(MathUtils.max(10,10), 10));
+		System.out.println(UnitTest.assertNotEquals(MathUtils.max(10,10), 50));
 		
 		
 		System.out.println(UnitTest.assertEquals(MathUtils.min(10,20), 10));
