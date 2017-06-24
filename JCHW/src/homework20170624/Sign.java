@@ -1,4 +1,4 @@
-package cw20170624;
+package homework20170624;
 
 public class Sign {
 

@@ -1,6 +1,6 @@
 package cw20170624;
 
-public class UnitTest {
+public class SimpleUnit {
 
 	public static boolean assertEquals(String actual, String expected){
 		boolean equals = actual.equals(expected);

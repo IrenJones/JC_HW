@@ -7,6 +7,6 @@ package cw20170624;
 public class FBTest {
 	public static void main(String [] args){
 		System.out.println("start");
-		System.out.println(UnitTest.assertEquals("Hetalia", "Hetalia"));
+		System.out.println(SimpleUnit.assertEquals("Hetalia", "Hetalia"));
 	}
 }
