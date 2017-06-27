@@ -1,5 +1,7 @@
 package homework20170624;
 
+import firstframework.SimpleUnit;
+
 public class PrimeTest {
 	public static void main(String[] args){
 		System.out.println(SimpleUnit.assertEquals(Prime.isPrime(11), true));
