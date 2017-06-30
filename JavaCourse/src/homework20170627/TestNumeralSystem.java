@@ -12,6 +12,12 @@ public class TestNumeralSystem {
 		System.out.println(SimpleUnit.assertEquals(NumeralSystem.toBinaryString(255), "11111111"));
 		System.out.println(SimpleUnit.assertEquals(NumeralSystem.toHexString(14), "E"));
 		System.out.println(SimpleUnit.assertEquals(NumeralSystem.toOctalString(14031996), "65416174"));
+		
+		System.out.println(SimpleUnit.assertNotEquals(NumeralSystem.toString(13, 3), "100"));
+		
+		System.out.println(SimpleUnit.assertNotEquals(NumeralSystem.toBinaryString(255), "11111110"));
+		System.out.println(SimpleUnit.assertNotEquals(NumeralSystem.toHexString(14), "A"));
+		System.out.println(SimpleUnit.assertNotEquals(NumeralSystem.toOctalString(14031996), "65416175"));
 
 		System.out.println(SimpleUnit.assertEquals(NumeralSystem.toString(14, 1), "error base"));
 		System.out.println(SimpleUnit.assertEquals(NumeralSystem.toString(14, 37), "error base"));
