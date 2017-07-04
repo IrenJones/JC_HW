@@ -2,8 +2,7 @@ package homework20170701;
 
 public class SumArray {
 
-	public static int findSum(int[][] arr) {
-		int sum = 0;
+	public static void findSum(int[][] arr) {
 		int locSum = 0;
 		for (int i = 0; i < arr.length; i++) {
 			int[] row = arr[i];
@@ -16,10 +15,8 @@ public class SumArray {
 					locSum+=row[j];
 				}
 			}
-			sum+=locSum;
+			System.out.println(locSum);
 			locSum=0;
 		}
-		return sum;
 	}
-
 }
