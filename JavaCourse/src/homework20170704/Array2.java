@@ -241,6 +241,27 @@ public class Array2 {
 		return res;
 	}
 
+	public boolean haveThree(int[] nums) {
+		boolean res = true;
+		int times = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (i < nums.length - 1 && nums[i] == 3 && nums[i + 1] != 3) {
+				times++;
+			} else if (i < nums.length - 1 && nums[i] == 3 && nums[i + 1] == 3) {
+				res = false;
+				break;
+			} else if (i == nums.length - 1 && nums[i] == 3) {
+				times++;
+			}
+		}
+		if (times == 3 && res == true) {
+			res = true;
+		} else {
+			res = false;
+		}
+		return res;
+	}
+
 	public boolean twoTwo(int[] nums) {
 		boolean res = true;
 		for (int i = 0; i < nums.length; i++) {
@@ -367,6 +388,68 @@ public class Array2 {
 			}
 		}
 		return nums;
+	}
+
+	public int[] withoutTen(int[] nums) {
+		int[] res = new int[nums.length];
+		int k = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != 10) {
+				res[k] = nums[i];
+				k++;
+			}
+		}
+		return res;
+	}
+
+	public int[] zeroMax(int[] nums) {
+		int maxOdd = 0;
+		for (int i = nums.length - 1; i >= 0; i--) {
+			if (i == nums.length - 1 && nums[i] != 0 && nums[i] % 2 == 1) {
+				maxOdd = nums[i];
+			} else if (nums[i] % 2 == 1 && nums[i] > maxOdd) {
+				maxOdd = nums[i];
+			} else if (nums[i] == 0) {
+				nums[i] = maxOdd;
+			}
+		}
+		return nums;
+	}
+
+	public int[] evenOdd(int[] nums) {
+		int[] res = new int[nums.length];
+		int k = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] % 2 == 0) {
+				res[k] = nums[i];
+				k++;
+			}
+		}
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] % 2 != 0) {
+				res[k] = nums[i];
+				k++;
+			}
+		}
+		return res;
+	}
+
+	public String[] fizzBuzz(int start, int end) {
+		String[] res = new String[end - start];
+		int inc = start;
+		for (int i = 0; i < res.length; i++) {
+			if (inc % 3 == 0 && inc % 5 == 0) {
+				res[i] = "FizzBuzz";
+			} else if (inc % 3 == 0) {
+				res[i] = "Fizz";
+			} else if (inc % 5 == 0) {
+				res[i] = "Buzz";
+			} else {
+				res[i] = "" + inc;
+			}
+			inc++;
+		}
+		return res;
 	}
 
 	public static void main(String[] args) {
