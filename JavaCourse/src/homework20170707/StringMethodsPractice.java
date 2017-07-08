@@ -19,6 +19,11 @@ public class StringMethodsPractice {
 		System.out.println(SimpleUnit.assertEquals(trim(s4), s2));
 		System.out.println(SimpleUnit.assertEquals(trim(s3), s2));
 		System.out.println(SimpleUnit.assertEquals(trim(s5), "He l l o"));
+		
+		
+		System.out.println(SimpleUnit.assertEquals(replace(s2,'e','o'), "Hollo"));
+		System.out.println(SimpleUnit.assertEquals(replace(s2,'l','y'), "Heyyo"));
+		System.out.println(SimpleUnit.assertEquals(replace(s2,'j','y'), "Hello"));
 
 	}
 
@@ -53,5 +58,20 @@ public class StringMethodsPractice {
 
 	private static boolean hasNoTrailingOrLeadingSpaces(String s) {
 		return s.indexOf(' ') != 0 && s.lastIndexOf(' ') != s.length() - 1;
+	}
+	
+	private static String replace(String s, char olds, char news) {
+
+		if (s == null || s.length() == 0) {
+			return s;
+		}
+		char[] chars = s.toCharArray();
+		for(int i=0;i<chars.length;i++){
+			if (chars[i]==olds){
+				chars[i]=news;
+			}
+		}
+		
+		return String.valueOf(chars);
 	}
 }
