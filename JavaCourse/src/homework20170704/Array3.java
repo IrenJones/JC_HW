@@ -64,6 +64,31 @@ public class Array3 {
 		return r;
 	}
 
+	public int countClumps(int[] nums) {
+		int c = 0;
+		int res = 0;
+		boolean f = false;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = i + 1; j < nums.length; j++) {
+				if (nums[i] == nums[j]) {
+					if (f == false) {
+						f = true;
+						res++;
+					}
+					c = nums[j];
+				}
+				if (nums[j] != c) {
+					f = false;
+					break;
+				}
+				i = j;
+			}
+		}
+		return res;
+	}
+	
+	
+
 	public static void main(String[] args) {
 		int[] r = { 5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5 };
 		// System.out.println(Arrays.toString(fix34(r)));
