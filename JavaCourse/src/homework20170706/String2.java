@@ -209,7 +209,6 @@ public class String2 {
 
 	public String oneTwo(String str) {
 		StringBuilder s = new StringBuilder();
-		int k = 0;
 		for (int i = 0; i < str.length() - 2; i += 3) {
 			s.append(str.charAt(i + 1)).append(str.charAt(i + 2)).append(str.charAt(i));
 		}
