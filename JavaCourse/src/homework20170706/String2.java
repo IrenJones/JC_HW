@@ -197,6 +197,56 @@ public class String2 {
 		return str.substring(f, l);
 	}
 
+	public boolean sameStarChar(String str) {
+		boolean res = true;
+		for (int i = 0; i < str.length(); i++) {
+			if (i >= 1 && i <= str.length() - 2 && str.charAt(i) == '*' && str.charAt(i - 1) != str.charAt(i + 1)) {
+				res = false;
+			}
+		}
+		return res;
+	}
+
+	public String oneTwo(String str) {
+		StringBuilder s = new StringBuilder();
+		int k = 0;
+		for (int i = 0; i < str.length() - 2; i += 3) {
+			s.append(str.charAt(i + 1)).append(str.charAt(i + 2)).append(str.charAt(i));
+		}
+		return s.toString();
+	}
+
+	public String zipZap(String str) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == 'z' && i + 2 < str.length() && str.charAt(i + 2) == 'p') {
+				s.append(str.charAt(i)).append(str.charAt(i + 2));
+				i += 2;
+			} else {
+				s.append(str.charAt(i));
+			}
+		}
+		return s.toString();
+	}
+
+	public String plusOut(String str, String word) {
+		String s = "";
+		int i;
+		for (i = 0; i < str.length() - word.length() + 1; i++) {
+			if (!str.substring(i, i + word.length()).equals(word)) {
+				s += '+';
+			} else {
+				s += word;
+				i += word.length() - 1;
+			}
+		}
+		while (i < str.length()) {
+			s += '+';
+			i++;
+		}
+		return s;
+	}
+
 	public static void main(String[] args) {
 	}
 }
