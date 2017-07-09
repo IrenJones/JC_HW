@@ -228,6 +228,28 @@ public class String2 {
 		return s.toString();
 	}
 
+	public String starOut(String str) {
+		StringBuilder s = new StringBuilder();
+		int c = 0;
+		int i;
+		for (i = 0; i < str.length(); i++) {
+			if (i + 1 < str.length() && str.charAt(i + 1) != '*' && str.charAt(i) != '*') {
+				s.append(str.charAt(i));
+			} else if (str.charAt(i) == '*') {
+				while (i < str.length() && str.charAt(i) == '*') {
+					i++;
+				}
+				if (i >= str.length() - 1) {
+					return s.toString();
+				}
+			}
+		}
+		if (str.length() > 0 && str.charAt(str.length() - 1) != '*') {
+			s.append(str.charAt(str.length() - 1));
+		}
+		return s.toString();
+	}
+
 	public String plusOut(String str, String word) {
 		String s = "";
 		int i;
