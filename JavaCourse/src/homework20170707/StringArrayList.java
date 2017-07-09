@@ -59,17 +59,18 @@ public class StringArrayList {
 	
 	@Override
 	public String toString(){
-		String res="[";
-		for(int i=0;i <size;i++){
-			if (!elements[i].equals(null)){
-				res+=elements[i];
-				if (i<size-1){
-					res+=",";
-				}
+		StringBuilder sb = new StringBuilder('[');
+
+		if (elements.length > 0) {
+			sb.append(elements[0]);
+			for (int i = 1; i < elements.length; i++) {
+				sb.append(",").append(elements[i]);
 			}
 		}
-		res+="]";
-		return res;
+		
+		sb.append(']');
+
+		return sb.toString();
 	}
 	
 }
