@@ -99,9 +99,71 @@ public class String3 {
 		return count;
 	}
 
+	public int sumDigits(String str) {
+		int sum = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (Character.isDigit(str.charAt(i))) {
+				sum += Integer.parseInt(str.substring(i, i + 1));
+			}
+		}
+		return sum;
+	}
+
+	public static String sameEnds(String string) {
+		String s = "";
+		for (int i = 0; i < string.length() / 2; i++) {
+			if (string.substring(0, i + 1).equals(string.substring(string.length() - i - 1, string.length()))) {
+				s = string.substring(0, i + 1);
+			}
+		}
+		return s;
+	}
+
+	public String mirrorEnds(String string) {
+		String s = "";
+		for (int i = 0; i < string.length(); i++) {
+			if (string.substring(0, i + 1)
+					.equals(new StringBuilder(string.substring(string.length() - i - 1, string.length())).reverse()
+							.toString())) {
+				s = string.substring(0, i + 1);
+			}
+		}
+		return s;
+	}
+
+	public static int maxBlock(String str) {
+		int len = 0;
+		char s;
+		int c = 0;
+		int j;
+		for (int i = 0; i < str.length(); i++) {
+			s = str.charAt(i);
+			for (j = i; j < str.length(); j++) {
+				if (str.charAt(j) == s) {
+					c++;
+				} else {
+					if (len < c) {
+						len = c;
+					}
+					c = 0;
+					break;
+				}
+			}
+			if (j == str.length()) {
+				if (len < c) {
+					len = c;
+				}
+				c = 0;
+			}
+		}
+		return len;
+	}
+
 	public static void main(String[] args) {
 		// System.out.println(equalIsNot("This is notnot"));
-		System.out.println(gHappy("gg"));
+		// System.out.println(gHappy("gg"));
+		// System.out.println(sameEnds("abXYab"));
+		System.out.println(maxBlock("xyzz"));
 	}
 
 }
