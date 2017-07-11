@@ -159,11 +159,31 @@ public class String3 {
 		return len;
 	}
 
+	public static int sumNumbers(String str) {
+		int sum = 0;
+		String s = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (Character.isDigit(str.charAt(i))) {
+				s += str.charAt(i);
+			} else {
+				if (s.length() > 0) {
+					sum += Integer.parseInt(s);
+					s = "";
+				}
+			}
+		}
+		if (s.length() > 0) {
+			sum += Integer.parseInt(s);
+		}
+		return sum;
+	}
+
 	public static void main(String[] args) {
 		// System.out.println(equalIsNot("This is notnot"));
 		// System.out.println(gHappy("gg"));
 		// System.out.println(sameEnds("abXYab"));
-		System.out.println(maxBlock("xyzz"));
+		//System.out.println(maxBlock("xyzz"));
+		System.out.println(sumNumbers("aa11b33"));
 	}
 
 }
