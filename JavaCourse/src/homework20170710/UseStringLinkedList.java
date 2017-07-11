@@ -19,16 +19,6 @@ public class UseStringLinkedList {
 		list.add("yo2");
 		list.add(removed);;
 		System.out.println(list);
-		/*list = new StringLinkedList();
-		
-		System.out.println(list.remove("two"));
-		
-		list.add("One");
-		System.out.println(list.remove("two"));
-		System.out.println(list.remove("One"));
-		
-		System.out.println(list);
-		*/
 	}
 
 }

@@ -38,6 +38,7 @@ public class StringLinkedList {
 					prev.next = current.next;
 				}
 				if (current.next == null){
+	
 					last = prev;
 				}
 				size--;
