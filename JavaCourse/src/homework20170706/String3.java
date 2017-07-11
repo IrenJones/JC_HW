@@ -39,19 +39,69 @@ public class String3 {
 			if (c == word.length()) {
 				if (flag) {
 					isCount++;
-				} else if (word.length()>0){
+				} else if (word.length() > 0) {
 					notCount++;
 				}
 			}
 			c = 0;
 			flag = false;
-			word="";
+			word = "";
 		}
 		return notCount == isCount ? true : false;
 	}
 
+	public static boolean gHappy(String str) {
+		boolean res = true;
+		int c = 0;
+		if (str.length() == 1 && str.charAt(0) == 'g') {
+			return false;
+		} else if (str.length() == 2) {
+			if (!(str.charAt(0) == 'g' && str.charAt(1) == 'g')) {
+				res = false;
+			}
+		} else {
+			for (int i = 0; i < str.length(); i++) {
+				if (str.charAt(i) == 'g') {
+					for (int j = i - 1; j < i + 2 && j >= 0 && j < str.length(); j++) {
+						if (str.charAt(j) == 'g') {
+							c++;
+						}
+					}
+					if (c < 2) {
+						res = false;
+						break;
+					}
+					c = 0;
+				}
+			}
+		}
+		return res;
+	}
+
+	public int countTriple(String str) {
+		int count = 0;
+		char s;
+		int c = 0;
+		if (str.length() >= 3) {
+			for (int i = 0; i < str.length(); i++) {
+				s = str.charAt(i);
+				for (int j = i; j < i + 3 && j < str.length(); j++) {
+					if (str.charAt(j) == s) {
+						c++;
+					}
+				}
+				if (c == 3) {
+					count++;
+				}
+				c = 0;
+			}
+		}
+		return count;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(equalIsNot("This is notnot"));
+		// System.out.println(equalIsNot("This is notnot"));
+		System.out.println(gHappy("gg"));
 	}
 
 }
