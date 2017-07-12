@@ -17,6 +17,10 @@ public class String3 {
 		}
 		return count;
 	}
+	
+	
+	
+	
 
 	public static boolean equalIsNot(String str) {
 		int isCount = 0;
@@ -178,12 +182,55 @@ public class String3 {
 		return sum;
 	}
 
+	public static String withoutString(String base, String remove) {
+		String res="";
+		int i;
+		for(i=0;i<base.length()-remove.length()+1;i++){
+			if(base.substring(i, i+remove.length()).toLowerCase().equals(remove.toLowerCase())){
+				i+= remove.length()-1;
+			}
+			else{
+				res+=base.charAt(i);
+			}
+		}
+		while (i<base.length()){
+			res+=base.charAt(i);
+			i++;
+		}
+		return res;
+	}
+	
+	
+	public static String notReplace(String str) {
+		//FIXME
+		String res = "";
+		int i;
+		for (i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == 'i') {
+				if (str.charAt(i + 1) == 's') {
+					if (((i - 1 >= 0 && Character.isLetter(str.charAt(i - 1))) || (i == 0))
+							&& ( (i + 2 < str.length() && !Character.isLetter(str.charAt(i + 2)))
+									|| (i == str.length() - 2))) {
+						res += "is not";
+						i += 1;
+					}
+				}
+			} else {
+				res += str.charAt(i);
+			}
+		}
+		while (i < str.length()) {
+			res += str.charAt(i);
+			i++;
+		}
+		return res;
+	}
 	public static void main(String[] args) {
 		// System.out.println(equalIsNot("This is notnot"));
 		// System.out.println(gHappy("gg"));
 		// System.out.println(sameEnds("abXYab"));
-		//System.out.println(maxBlock("xyzz"));
-		System.out.println(sumNumbers("aa11b33"));
+		// System.out.println(maxBlock("xyzz"));
+		System.out.println(withoutString("Hello there", "llo"));
 	}
 
 }
