@@ -90,6 +90,26 @@ public class Array3 {
 		return result;
 	}
 
+	public boolean linearIn(int[] outer, int[] inner) {
+		boolean res = false;
+		int count = 0;
+		int j = 0;
+		if (inner.length == 0) {
+			res = true;
+		} else {
+			for (int i = 0; i < outer.length && j < inner.length; i++) {
+				if (outer[i] == inner[j]) {
+					j++;
+					count++;
+				}
+			}
+			if (count == inner.length) {
+				res = true;
+			}
+		}
+		return res;
+	}
+
 	public int[] squareUp(int n) {
 		int[] arr = new int[n * n];
 		int c = n * n - 1;
@@ -139,6 +159,6 @@ public class Array3 {
 
 	public static void main(String[] args) {
 		int[] r = { 5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5 };
-		// System.out.println(Arrays.toString(fix34(r)));
+		// System.out.println(linearIn(new int[]{1, 2, 4, 6}, new int[]{2, 4}));
 	}
 }
