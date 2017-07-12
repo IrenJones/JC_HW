@@ -2,6 +2,33 @@ package homework20170704;
 
 public class Array3 {
 
+	public int maxSpan(int[] nums) {
+		int maxi = 0;
+		int left = 0;
+		int right = 0;
+		int element;
+		for (int i = 0; i < nums.length; i++) {
+			element = nums[i];
+			left = i;
+			right = i;
+			for (int j = 0; j < nums.length; j++) {
+				if (nums[i] == nums[j]) {
+					if (j < left) {
+						left = j;
+					}
+					if (j > right) {
+						right = j;
+					}
+				}
+			}
+			if (maxi < right - left + 1) {
+				maxi = right - left + 1;
+			}
+		}
+
+		return maxi;
+	}
+
 	public int[] fix34(int[] nums) {
 		int tmp = 0;
 		int prev = 0;
@@ -86,8 +113,6 @@ public class Array3 {
 		}
 		return res;
 	}
-	
-	
 
 	public static void main(String[] args) {
 		int[] r = { 5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5 };
