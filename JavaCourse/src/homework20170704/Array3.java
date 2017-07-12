@@ -157,8 +157,45 @@ public class Array3 {
 		return res;
 	}
 
+	public static int maxMirror(int[] nums) {
+		int res = 1;
+		int curres = 1;
+		boolean flag = false;
+		int index;
+
+		if (nums.length == 0) {
+			res = 0;
+		} else {
+			for (int i = 0; i < nums.length; i++) {
+				curres = 1;
+				index = i;
+
+				for (int j = nums.length - 1; j >= 0 && index < nums.length; j--) {
+					if (flag == false && nums[index] == nums[j]) {
+						flag = true;
+						index++;
+					} else if (flag == true && nums[index] == nums[j]) {
+						curres++;
+						index++;
+						res = (curres > res) ? curres : res;
+
+					} else if (flag == true && nums[i] != nums[j]) {
+						flag = false;
+						index = i;
+						curres = 1;
+					} else if (j - index <= 1) {
+						flag = false;
+						break;
+					}
+
+				}
+			}
+		}
+		return res;
+	}
+
 	public static void main(String[] args) {
 		int[] r = { 5, 3, 5, 4, 5, 4, 5, 4, 3, 5, 3, 5 };
-		// System.out.println(linearIn(new int[]{1, 2, 4, 6}, new int[]{2, 4}));
+		System.out.println(maxMirror(new int[] { 1, 2, 3, 8, 9, 3, 2, 1 }));
 	}
 }
