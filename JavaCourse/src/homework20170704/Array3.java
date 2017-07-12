@@ -67,6 +67,29 @@ public class Array3 {
 		return nums;
 	}
 
+	public boolean canBalance(int[] nums) {
+		boolean result = false;
+		int sum1 = 0;
+		int sum2 = 0;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums.length; j++) {
+				if (j <= i) {
+					sum1 += nums[j];
+				} else {
+					sum2 += nums[j];
+				}
+			}
+			if (sum1 == sum2) {
+				result = true;
+				break;
+			} else {
+				sum1 = 0;
+				sum2 = 0;
+			}
+		}
+		return result;
+	}
+
 	public int[] squareUp(int n) {
 		int[] arr = new int[n * n];
 		int c = n * n - 1;
