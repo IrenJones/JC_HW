@@ -208,12 +208,18 @@ public class String3 {
 		for (i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == 'i') {
 				if (str.charAt(i + 1) == 's') {
-					if (((i - 1 >= 0 && Character.isLetter(str.charAt(i - 1))) || (i == 0))
+					if (((i - 1 >= 0 && !Character.isLetter(str.charAt(i - 1))) || (i == 0))
 							&& ( (i + 2 < str.length() && !Character.isLetter(str.charAt(i + 2)))
 									|| (i == str.length() - 2))) {
 						res += "is not";
 						i += 1;
 					}
+					else{
+						res += str.charAt(i);
+					}
+				}
+				else{
+					res += str.charAt(i);
 				}
 			} else {
 				res += str.charAt(i);
@@ -230,7 +236,7 @@ public class String3 {
 		// System.out.println(gHappy("gg"));
 		// System.out.println(sameEnds("abXYab"));
 		// System.out.println(maxBlock("xyzz"));
-		System.out.println(withoutString("Hello there", "llo"));
+		System.out.println(notReplace("Dis is bliss is"));
 	}
 
 }
