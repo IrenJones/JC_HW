@@ -27,6 +27,6 @@ public class Day3Solution {
             
         }
         System.out.println(ans);
-        
+        sc.close();
     }
 }
