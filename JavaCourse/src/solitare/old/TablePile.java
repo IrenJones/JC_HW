@@ -70,7 +70,7 @@ class TablePile extends CardPile {
 		}
 		localy = stackDisplay(g, aCard.link);
 		aCard.draw(g, x, localy);
-		return localy + 20;
+		return localy + 30;
 	}
 
 	@Override

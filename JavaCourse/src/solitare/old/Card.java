@@ -41,14 +41,15 @@ class Card {
 	public void draw(Graphics g, int x, int y) {
 		// clear rectangle, draw border
 		g.clearRect(x, y, width, height);
-		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
 		// draw body of card
 		if (isFaceUp()) {
+			g.setColor(Color.black);
+			g.drawRoundRect(x, y, width, height, 10, 5);
+			
 			if (getColor() == red) {
 				g.setColor(Color.red);
 			} else {
-				g.setColor(Color.blue);
+				g.setColor(Color.darkGray);
 			}
 			g.drawString(names[getRank()], x + 3, y + 15);
 			switch (getSuit()) {
@@ -84,12 +85,16 @@ class Card {
 				break;
 			}
 		} else { // face down
-			g.setColor(Color.yellow);
+			g.setColor(Color.lightGray);
+			g.fillRoundRect(x, y, width, height, 10, 5);
+			g.setColor(Color.white);
 			g.drawLine(x + 15, y + 5, x + 15, y + 65);
 			g.drawLine(x + 35, y + 5, x + 35, y + 65);
 			g.drawLine(x + 5, y + 20, x + 45, y + 20);
 			g.drawLine(x + 5, y + 35, x + 45, y + 35);
 			g.drawLine(x + 5, y + 50, x + 45, y + 50);
+			g.setColor(Color.black);
+			g.drawRoundRect(x, y, width, height, 10, 5);
 		}
 	}
 
