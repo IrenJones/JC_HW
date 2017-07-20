@@ -3,8 +3,16 @@ package solitare.old;
 import java.applet.Applet;
 import java.awt.Event;
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class Solitare extends Applet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Image bgImage;
+	
 	static DeckPile deckPile;
 	static DiscardPile discardPile;
 	static TablePile tableau[];
@@ -13,6 +21,8 @@ public class Solitare extends Applet {
 
 	@Override
 	public void init() {
+		bgImage = getImage(getCodeBase(), "src/solitare.old/im.jpg");
+		setSize(450, 400);
 		// first allocate the arrays
 		allPiles = new CardPile[13];
 		suitPile = new SuitPile[4];
@@ -30,6 +40,8 @@ public class Solitare extends Applet {
 
 	@Override
 	public void paint(Graphics g) {
+		bgImage = getImage(getCodeBase(), "im.jpg");
+		g.drawImage(bgImage,0,0,this); 
 		for (int i = 0; i < 13; i++) {
 			allPiles[i].display(g);
 		}
