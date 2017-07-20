@@ -53,7 +53,7 @@ class CardPile {
 	public void display(Graphics g) {
 		g.setColor(Color.black);
 		if (firstCard == null) {
-			g.drawRect(x, y, Card.width, Card.height);
+			g.drawRoundRect(x, y, Card.width, Card.height, 10, 5);
 		} else {
 			firstCard.draw(g, x, y);
 		}
