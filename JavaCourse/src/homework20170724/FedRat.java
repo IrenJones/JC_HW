@@ -1,7 +1,13 @@
 package homework20170724;
 
 class FedRat implements Brain {
-	HelperPet hp = new HelperPet();
+	HelperPet hp;
+	Rat rat;
+	
+	FedRat(Rat rat){
+		this.rat = rat;
+		this.hp = new HelperPet();
+	}
 	
 	@Override
 	public void feed() {
@@ -13,6 +19,7 @@ class FedRat implements Brain {
 		hp.clack();
 		hp.squeak();
 		hp.squeak();
+		this.rat.brain = new HungryRat(this.rat);
 	}
 	
 }
