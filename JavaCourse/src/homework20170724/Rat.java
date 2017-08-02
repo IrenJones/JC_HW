@@ -2,7 +2,7 @@ package homework20170724;
 
 public class Rat implements Pet {
 	boolean state = false;	
-	public Brain brain = new HungryRat(this);
+	public Brain brain = new HungryRatBrainState(this);
 	
 	@Override
 	public void feed() {

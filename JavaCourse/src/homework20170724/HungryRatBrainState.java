@@ -1,25 +1,25 @@
 package homework20170724;
 
-class FedRat implements Brain {
+class HungryRatBrainState implements Brain {
 	HelperPet hp;
 	Rat rat;
 	
-	FedRat(Rat rat){
+	HungryRatBrainState(Rat rat){
 		this.rat = rat;
 		this.hp = new HelperPet();
 	}
 	
 	@Override
 	public void feed() {
+		hp.clack();
+		hp.eat();
 		hp.squeak();
+		this.rat.brain = new FedRatBrainState(this.rat);
 	}
-	
+
 	@Override
 	public void play() {
 		hp.clack();
-		hp.squeak();
-		hp.squeak();
-		this.rat.brain = new HungryRat(this.rat);
 	}
 	
 }
