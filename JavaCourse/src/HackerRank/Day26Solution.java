@@ -30,6 +30,7 @@ class LibraryBook {
 	        } else {
 	            res = 10000;
 	        }
+	        
 		
 		return res;
 	}
