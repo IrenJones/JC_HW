@@ -66,14 +66,16 @@ public class Dictionary implements Iterable<Pair> {
 		d.put("Ann", "London");
 		d.put("Ann", "Paris");
 
-		System.out.println(d.get("Ann"));
+		for (Pair pair:d){
+			System.out.println(pair.key + " " + pair.value);
+		}
 
 	}
 
 	@Override
 	public Iterator<Pair> iterator() {
 		return new Iterator<Dictionary.Pair>() {
-			int currentElement = 0;
+			int currentElement = -1;
 			Iterator<Pair> listIterator = null;
 
 			@Override
@@ -84,6 +86,7 @@ public class Dictionary implements Iterable<Pair> {
 					result = true;
 				} else {
 					listIterator = null;
+					currentElement++;
 					for (; listIterator == null && currentElement < data.length; currentElement++) {
 						List<Pair> list = data[currentElement];
 						if (list == null) {
