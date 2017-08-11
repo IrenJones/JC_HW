@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class BinarySearchExample {
 
@@ -28,7 +30,6 @@ public class BinarySearchExample {
 		
 		List <A> arrList = new ArrayList<>();
 		start = System.nanoTime();
-		key = new A();
 		for (int i=0;i<1_000_000;i++){
 			arrList.add(new A());
 		}
@@ -41,6 +42,23 @@ public class BinarySearchExample {
 		
 		stop = System.nanoTime();
 		System.out.println(stop-start);
+		
+		
+		Set <A> set = new TreeSet<>();
+		start = System.nanoTime();
+		for (int i=0;i<1_000_000;i++){
+			set.add(new A());
+		}
+
+		if (set.contains(key)){
+			System.out.println("ya " + ((TreeSet<A>) set).headSet(key).size());
+		}
+		else{
+			System.out.println("nein");
+		}
+		
+		stop = System.nanoTime();
+		System.out.println(stop-start);
 
 	}
 
@@ -50,7 +68,7 @@ public class BinarySearchExample {
 
 class A implements Comparable<A>{
 	int x;
-	static Random r = new Random();
+	static Random r = new Random(14);
 	
 	{
 		// generate random number
