@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class SosrtClassExample {
+public class SortClassExample {
 
 	public static void main(String[] args) {
 		
