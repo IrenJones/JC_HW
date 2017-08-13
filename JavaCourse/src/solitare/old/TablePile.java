@@ -32,7 +32,6 @@ class TablePile extends CardPile {
 
 	@Override
 	public void select(int tx, int ty) {
-		//TODO дублирование кода!
 		if (isEmpty()) {
 			return;
 		}
@@ -50,7 +49,9 @@ class TablePile extends CardPile {
 			if (Solitare.suitPile[i].canTake(topCard)) {
 				Solitare.suitPile[i].push(topCard);
 				topCard = top();
-				topCard.flip();
+				if (!topCard.isFaceUp()) {
+					topCard.flip();
+				}
 				return;
 			}
 		}
@@ -59,7 +60,9 @@ class TablePile extends CardPile {
 			if (Solitare.tableau[i].canTake(topCard)) {
 				Solitare.tableau[i].push(topCard);
 				topCard = top();
-				topCard.flip();
+				if (!topCard.isFaceUp()) {
+					topCard.flip();
+				}
 				return;
 			}
 		}
