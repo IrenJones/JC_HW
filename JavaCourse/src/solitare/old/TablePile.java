@@ -49,6 +49,8 @@ class TablePile extends CardPile {
 		for (int i = 0; i < 4; i++) {
 			if (Solitare.suitPile[i].canTake(topCard)) {
 				Solitare.suitPile[i].push(topCard);
+				topCard = top();
+				topCard.flip();
 				return;
 			}
 		}
@@ -56,6 +58,8 @@ class TablePile extends CardPile {
 		for (int i = 0; i < 7; i++) {
 			if (Solitare.tableau[i].canTake(topCard)) {
 				Solitare.tableau[i].push(topCard);
+				topCard = top();
+				topCard.flip();
 				return;
 			}
 		}
