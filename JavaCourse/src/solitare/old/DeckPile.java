@@ -35,8 +35,19 @@ class DeckPile extends CardPile {
 	@Override
 	public void select(int tx, int ty) {
 		if (isEmpty()) {
-			return;
+			turnDiscardToDeck();
 		}
-		Solitare.discardPile.push(pop());
+		else{
+			Solitare.discardPile.push(pop());
+		}
+	}
+	
+	
+	public void turnDiscardToDeck(){
+		while (!Solitare.discardPile.isEmpty()) {
+			Card card = Solitare.discardPile.pop();
+			card.flip();
+			this.push(card);
+		}
 	}
 }

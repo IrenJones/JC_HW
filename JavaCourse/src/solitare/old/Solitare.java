@@ -21,7 +21,7 @@ public class Solitare extends Applet {
 
 	@Override
 	public void init() {
-		bgImage = getImage(getCodeBase(), "src/solitare.old/im.jpg");
+		bgImage = getImage(getCodeBase(), "/images/im.jpg");
 		setSize(450, 400);
 		// first allocate the arrays
 		allPiles = new CardPile[13];
@@ -36,6 +36,7 @@ public class Solitare extends Applet {
 		for (int i = 0; i < 7; i++) {
 			allPiles[6 + i] = tableau[i] = new TablePile(5 + 55 * i, 80, i + 1);
 		}
+		System.out.println("Working dir:  " + System.getProperty("user.dir"));
 	}
 
 	@Override
