@@ -16,7 +16,7 @@ public class SortingsTests {
 		//System.out.println(Arrays.toString(arr));
 		//System.out.println();
 		long start = System.nanoTime();
-		arr = radixsort(arr, n);
+		radixsort(arr, n);
 		long stop = System.nanoTime();
 		//System.out.println(Arrays.toString(arr));
 		//System.out.println();
@@ -28,7 +28,7 @@ public class SortingsTests {
 		System.out.println(stop-start);
 	}
 
-	private static int[] radixsort(int[] arr, int n) {
+	private static void radixsort(int[] arr, int n) {
 		int maxi = findMax(arr);
 		int[] b = new int[n];
 		
@@ -59,8 +59,6 @@ public class SortingsTests {
 				arr[i] = b[i];
 			}
 		}
-		
-		return arr;
 	}
 
 	private static int findMax(int[] arr) {
