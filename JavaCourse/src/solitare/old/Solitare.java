@@ -12,7 +12,11 @@ public class Solitare extends Applet {
 	private static final long serialVersionUID = 1L;
 
 	Image bgImage;
-	
+	boolean moveCards = false;
+	int prevX = 0;
+	int prevY = 0;
+	int pileId = 0;
+
 	static DeckPile deckPile;
 	static DiscardPile discardPile;
 	static TablePile tableau[];
@@ -36,13 +40,13 @@ public class Solitare extends Applet {
 		for (int i = 0; i < 7; i++) {
 			allPiles[6 + i] = tableau[i] = new TablePile(5 + 55 * i, 80, i + 1);
 		}
-		//System.out.println("Working dir:  " + System.getProperty("user.dir"));
+		// System.out.println("Working dir: " + System.getProperty("user.dir"));
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		bgImage = getImage(getCodeBase(), "im.jpg");
-		g.drawImage(bgImage,0,0,this); 
+		g.drawImage(bgImage, 0, 0, this);
 		for (int i = 0; i < 13; i++) {
 			allPiles[i].display(g);
 		}
@@ -51,12 +55,29 @@ public class Solitare extends Applet {
 	@Override
 	public boolean mouseDown(Event evt, int x, int y) {
 		for (int i = 0; i < 13; i++) {
-			if (allPiles[i].includes(x, y)) {
+			if (allPiles[i].includes(x, y) && i == 0) {
+				moveCards = false;
 				allPiles[i].select(x, y);
 				repaint();
 				return true;
+			} else if (allPiles[i].includes(x, y)){
+					if (moveCards) {
+						if (i > 1) {
+							allPiles[pileId].select(prevX, prevY);
+							repaint();
+							moveCards = false;
+							return true;
+						}
+					} else if (i == 1 || i >= 7 && i <= 12){
+						prevX = x;
+						prevY = y;
+						pileId = i;
+						moveCards = true;
+						return true;
+					}
 			}
 		}
 		return true;
 	}
+
 }
