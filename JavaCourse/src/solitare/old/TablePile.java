@@ -44,15 +44,22 @@ class TablePile extends CardPile {
 		}
 
 		topCard = pop();
-		if (pileId >=2 && pileId <=5){
-			if (Solitare.suitPile[pileId-2].canTake(topCard)) {
-				Solitare.suitPile[pileId-2].push(topCard);
+		if (pileId >= 2 && pileId <= 5) {
+			if (Solitare.suitPile[pileId - 2].canTake(topCard)) {
+				Solitare.suitPile[pileId - 2].push(topCard);
+				topCard = top();
+				if (topCard != null && !topCard.isFaceUp()) {
+					topCard.flip();
+				}
 				return;
 			}
-		}
-		else if (pileId >=6 && pileId <=12){
-			if (Solitare.tableau[pileId-6].canTake(topCard)) {
-				Solitare.tableau[pileId-6].push(topCard);
+		} else if (pileId >= 6 && pileId <= 12) {
+			if (Solitare.tableau[pileId - 6].canTake(topCard)) {
+				Solitare.tableau[pileId - 6].push(topCard);
+				topCard = top();
+				if (topCard != null && !topCard.isFaceUp()) {
+					topCard.flip();
+				}
 				return;
 			}
 		}
