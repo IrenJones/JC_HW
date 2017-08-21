@@ -57,18 +57,18 @@ public class Solitare extends Applet {
 		for (int i = 0; i < 13; i++) {
 			if (allPiles[i].includes(x, y) && i == 0) {
 				moveCards = false;
-				allPiles[i].select(x, y);
+				allPiles[i].select(x, y, 0);
 				repaint();
 				return true;
 			} else if (allPiles[i].includes(x, y)){
 					if (moveCards) {
 						if (i > 1) {
-							allPiles[pileId].select(prevX, prevY);
+							allPiles[pileId].select(prevX, prevY, i);
 							repaint();
 							moveCards = false;
 							return true;
 						}
-					} else if (i == 1 || i >= 7 && i <= 12){
+					} else if (i == 1 || i >= 6 && i <= 12){
 						prevX = x;
 						prevY = y;
 						pileId = i;

@@ -31,7 +31,7 @@ class TablePile extends CardPile {
 	}
 
 	@Override
-	public void select(int tx, int ty) {
+	public void select(int tx, int ty, int pileId) {
 		if (isEmpty()) {
 			return;
 		}
@@ -43,26 +43,16 @@ class TablePile extends CardPile {
 			return;
 		}
 
-		// else see if any suit pile can take card
 		topCard = pop();
-		for (int i = 0; i < 4; i++) {
-			if (Solitare.suitPile[i].canTake(topCard)) {
-				Solitare.suitPile[i].push(topCard);
-				topCard = top();
-				if (!topCard.isFaceUp()) {
-					topCard.flip();
-				}
+		if (pileId >=2 && pileId <=5){
+			if (Solitare.suitPile[pileId-2].canTake(topCard)) {
+				Solitare.suitPile[pileId-2].push(topCard);
 				return;
 			}
 		}
-		// else see if any other table pile can take card
-		for (int i = 0; i < 7; i++) {
-			if (Solitare.tableau[i].canTake(topCard)) {
-				Solitare.tableau[i].push(topCard);
-				topCard = top();
-				if (!topCard.isFaceUp()) {
-					topCard.flip();
-				}
+		else if (pileId >=6 && pileId <=12){
+			if (Solitare.tableau[pileId-6].canTake(topCard)) {
+				Solitare.tableau[pileId-6].push(topCard);
 				return;
 			}
 		}

@@ -33,7 +33,7 @@ class DeckPile extends CardPile {
 	}
 
 	@Override
-	public void select(int tx, int ty) {
+	public void select(int tx, int ty, int pileId) {
 		if (isEmpty()) {
 			turnDiscardToDeck();
 		}

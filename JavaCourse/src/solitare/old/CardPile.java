@@ -45,7 +45,7 @@ class CardPile {
 		return x <= clickX && clickX <= x + Card.width && y <= clickY && clickY <= y + Card.height;
 	}
 
-	public void select(int tx, int ty) {
+	public void select(int tx, int ty, int pileId) {
 		// do nothing
 	}
 
