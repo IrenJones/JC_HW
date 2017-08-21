@@ -13,7 +13,7 @@ class TablePile extends CardPile {
 		// then initialize our pile of cards
 		for (int i = 0; i < c; i++) {
 			if (i==0){
-				heightPile = 70+Card.height;
+				heightPile = 80+Card.height;
 			}
 			else{
 				heightPile+=30;
@@ -52,11 +52,10 @@ class TablePile extends CardPile {
 			topCard.flip();
 			return;
 		}
+		
 		/*CardPile curStack = new CardPile(x,y);
-		int count = 0;
 		while (!this.isEmpty()) {
 			Card card = this.pop();
-			count++;
 			curStack.push(card);
 		}
 		
@@ -70,6 +69,8 @@ class TablePile extends CardPile {
 			if (Solitare.suitPile[pileId - 2].canTake(topCard)) {
 				Solitare.suitPile[pileId - 2].push(topCard);
 				topCard = top();
+				heightPile-=30;
+				count--;
 				if (topCard != null && !topCard.isFaceUp()) {
 					topCard.flip();
 				}
@@ -78,7 +79,17 @@ class TablePile extends CardPile {
 		} else if (pileId >= 6 && pileId <= 12) {
 			if (Solitare.tableau[pileId - 6].canTake(topCard)) {
 				Solitare.tableau[pileId - 6].push(topCard);
+				if (Solitare.tableau[pileId - 6].count == 0){
+					Solitare.tableau[pileId - 6].count+= 80 + Card.height;
+				}
+				else{
+					Solitare.tableau[pileId - 6].heightPile+=30;
+				}
+				Solitare.tableau[pileId - 6].count++;
+				System.out.println(Solitare.tableau[pileId - 6].heightPile);
 				topCard = top();
+				heightPile-=30;
+				count--;
 				if (topCard != null && !topCard.isFaceUp()) {
 					topCard.flip();
 				}
