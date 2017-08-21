@@ -40,7 +40,6 @@ public class Solitare extends Applet {
 		for (int i = 0; i < 7; i++) {
 			allPiles[6 + i] = tableau[i] = new TablePile(5 + 55 * i, 80, i + 1);
 		}
-		// System.out.println("Working dir: " + System.getProperty("user.dir"));
 	}
 
 	@Override
