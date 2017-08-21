@@ -25,7 +25,7 @@ public class Solitare extends Applet {
 
 	@Override
 	public void init() {
-		bgImage = getImage(getCodeBase(), "/images/im.jpg");
+		bgImage = getImage(getCodeBase(), "/images/ima.jpg");
 		setSize(450, 400);
 		// first allocate the arrays
 		allPiles = new CardPile[13];
@@ -45,7 +45,7 @@ public class Solitare extends Applet {
 
 	@Override
 	public void paint(Graphics g) {
-		bgImage = getImage(getCodeBase(), "im.jpg");
+		bgImage = getImage(getCodeBase(), "ima.jpg");
 		g.drawImage(bgImage, 0, 0, this);
 		for (int i = 0; i < 13; i++) {
 			allPiles[i].display(g);
