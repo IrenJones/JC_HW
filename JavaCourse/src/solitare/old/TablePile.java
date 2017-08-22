@@ -59,9 +59,8 @@ class TablePile extends CardPile {
 		}
 		
 		CardPile curStack = new CardPile(x,y);
-		int curHeight = 80;
-		int curCount = 0;
-		while (!this.isEmpty() && ty < heightPile-30) {
+		//int curCount = 0;
+		while (!this.isEmpty() && ty < heightPile-50) {
 			Card card = this.pop();
 			curStack.push(card);
 			count--;
@@ -71,15 +70,10 @@ class TablePile extends CardPile {
 			else{
 				heightPile-=30;
 			}
-			curCount++;
-			if (curCount == 1){
-				curHeight+= Card.height;
-			}
-			else{
-				curHeight+=30;
-			}
+			//curCount++;
 		}
-		System.out.println(curCount + " :" + count + curStack.toString());
+		//System.out.println(tx + " :" + ty + " " + heightPile);
+		//System.out.println(curCount + " :" + count + " " + curStack.toString());
 		if (curStack.isEmpty()) {
 			return;
 		}
@@ -100,16 +94,23 @@ class TablePile extends CardPile {
 		} else if (pileId >= 6 && pileId <= 12) {
 			if (Solitare.tableau[pileId - 6].canTake(topCard)) {
 				Solitare.tableau[pileId - 6].push(topCard);
-				System.out.println(topCard);
+				if (Solitare.tableau[pileId - 6].count == 0){
+					Solitare.tableau[pileId - 6].heightPile+= Card.height;
+				}
+				else{
+					Solitare.tableau[pileId - 6].heightPile+= 30;
+				}
+				Solitare.tableau[pileId - 6].count++;
+				//System.out.println(topCard);
 				while (!curStack.isEmpty()) {
 					topCard = curStack.pop();
-					System.out.println(topCard);
+					//System.out.println(topCard);
 					Solitare.tableau[pileId - 6].push(topCard);
 					if (Solitare.tableau[pileId - 6].count == 0){
-						Solitare.tableau[pileId - 6].heightPile+= 80 + Card.height;
+						Solitare.tableau[pileId - 6].heightPile+= Card.height;
 					}
 					else{
-						Solitare.tableau[pileId - 6].heightPile+=30;
+						Solitare.tableau[pileId - 6].heightPile+= 30;
 					}
 					Solitare.tableau[pileId - 6].count++;
 				}
@@ -121,19 +122,20 @@ class TablePile extends CardPile {
 				return;
 			}
 		}
-		push(topCard);
-		boolean flag = false;
 		// else put it back on our pile
+		push(topCard);
+		count++;
+		if (count==1){
+			heightPile = Card.height;
+		}
+		else{
+			heightPile+=30;
+		}
 		while (!curStack.isEmpty()) {
 			topCard = curStack.pop();
 			this.push(topCard);
-			if (!flag){
-				heightPile = 80+Card.height;
-				flag = true;
-			}
-			else{
-				heightPile+=30;
-			}
+			heightPile+=30;
+			count++;
 		}
 	}
 
