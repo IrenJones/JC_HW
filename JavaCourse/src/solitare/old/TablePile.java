@@ -37,7 +37,12 @@ class TablePile extends CardPile {
 	@Override
 	public boolean includes(int tx, int ty) {
 		// don't test bottom of card
-		return x <= tx && tx <= x + Card.width && y <= ty && ty<= heightPile;
+		if (count >0){
+			return x <= tx && tx <= x + Card.width && y <= ty && ty<= heightPile;
+		}
+		else{
+			return x <= tx && tx <= x + Card.width && y <= ty;
+		}
 	}
 
 	@Override
@@ -52,15 +57,20 @@ class TablePile extends CardPile {
 			topCard.flip();
 			return;
 		}
-		//FIXME missing cards
+		
 		CardPile curStack = new CardPile(x,y);
 		int curHeight = 80;
 		int curCount = 0;
-		while (!this.isEmpty() && ty < heightPile - 30) {
+		while (!this.isEmpty() && ty < heightPile-30) {
 			Card card = this.pop();
 			curStack.push(card);
-			heightPile-=30;
 			count--;
+			if (count==0){
+				heightPile-=70;
+			}
+			else{
+				heightPile-=30;
+			}
 			curCount++;
 			if (curCount == 1){
 				curHeight+= Card.height;
@@ -69,7 +79,7 @@ class TablePile extends CardPile {
 				curHeight+=30;
 			}
 		}
-		System.out.println(curCount + " :" + count);
+		System.out.println(curCount + " :" + count + curStack.toString());
 		if (curStack.isEmpty()) {
 			return;
 		}
@@ -90,11 +100,13 @@ class TablePile extends CardPile {
 		} else if (pileId >= 6 && pileId <= 12) {
 			if (Solitare.tableau[pileId - 6].canTake(topCard)) {
 				Solitare.tableau[pileId - 6].push(topCard);
+				System.out.println(topCard);
 				while (!curStack.isEmpty()) {
 					topCard = curStack.pop();
-					Solitare.suitPile[pileId - 2].push(topCard);
+					System.out.println(topCard);
+					Solitare.tableau[pileId - 6].push(topCard);
 					if (Solitare.tableau[pileId - 6].count == 0){
-						Solitare.tableau[pileId - 6].count+= 80 + Card.height;
+						Solitare.tableau[pileId - 6].heightPile+= 80 + Card.height;
 					}
 					else{
 						Solitare.tableau[pileId - 6].heightPile+=30;
@@ -110,18 +122,18 @@ class TablePile extends CardPile {
 			}
 		}
 		push(topCard);
-		int i =0;
+		boolean flag = false;
 		// else put it back on our pile
 		while (!curStack.isEmpty()) {
 			topCard = curStack.pop();
 			this.push(topCard);
-			if (i==0){
+			if (!flag){
 				heightPile = 80+Card.height;
+				flag = true;
 			}
 			else{
 				heightPile+=30;
 			}
-			i++;
 		}
 	}
 
