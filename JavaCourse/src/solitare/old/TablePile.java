@@ -3,20 +3,19 @@ package solitare.old;
 import java.awt.Graphics;
 
 class TablePile extends CardPile {
-	
+
 	int count;
 	int heightPile;
-	
+
 	TablePile(int x, int y, int c) {
 		// initialize the parent class
 		super(x, y);
 		// then initialize our pile of cards
 		for (int i = 0; i < c; i++) {
-			if (i==0){
-				heightPile = 80+Card.height;
-			}
-			else{
-				heightPile+=30;
+			if (i == 0) {
+				heightPile = 80 + Card.height;
+			} else {
+				heightPile += 30;
 			}
 			push(Solitare.deckPile.pop());
 			count++;
@@ -37,10 +36,9 @@ class TablePile extends CardPile {
 	@Override
 	public boolean includes(int tx, int ty) {
 		// don't test bottom of card
-		if (count >0){
-			return x <= tx && tx <= x + Card.width && y <= ty && ty<= heightPile;
-		}
-		else{
+		if (count > 0) {
+			return x <= tx && tx <= x + Card.width && y <= ty && ty <= heightPile;
+		} else {
 			return x <= tx && tx <= x + Card.width && y <= ty;
 		}
 	}
@@ -57,23 +55,34 @@ class TablePile extends CardPile {
 			topCard.flip();
 			return;
 		}
-		
-		CardPile curStack = new CardPile(x,y);
-		//int curCount = 0;
-		while (!this.isEmpty() && ty < heightPile-40) {
+
+		CardPile curStack = new CardPile(x, y);
+		// int curCount = 0;
+		if (heightPile - ty < 70) {
 			Card card = this.pop();
 			curStack.push(card);
 			count--;
-			if (count==0){
-				heightPile-=70;
+			if (count == 0) {
+				heightPile -= 70;
+			} else {
+				heightPile -= 30;
 			}
-			else{
-				heightPile-=30;
+		} else {
+			while (!this.isEmpty() && ty < heightPile - 30) {
+				Card card = this.pop();
+				curStack.push(card);
+				count--;
+				if (count == 0) {
+					heightPile -= 70;
+				} else {
+					heightPile -= 30;
+				}
+				// curCount++;
 			}
-			//curCount++;
 		}
-		//System.out.println(tx + " :" + ty + " " + heightPile);
-		//System.out.println(curCount + " :" + count + " " + curStack.toString());
+		// System.out.println(tx + " :" + ty + " " + heightPile);
+		// System.out.println(curCount + " :" + count + " " +
+		// curStack.toString());
 		if (curStack.isEmpty()) {
 			return;
 		}
@@ -94,27 +103,25 @@ class TablePile extends CardPile {
 		} else if (pileId >= 6 && pileId <= 12) {
 			if (Solitare.tableau[pileId - 6].canTake(topCard)) {
 				Solitare.tableau[pileId - 6].push(topCard);
-				if (Solitare.tableau[pileId - 6].count == 0){
-					Solitare.tableau[pileId - 6].heightPile+= Card.height;
-				}
-				else{
-					Solitare.tableau[pileId - 6].heightPile+= 30;
+				if (Solitare.tableau[pileId - 6].count == 0) {
+					Solitare.tableau[pileId - 6].heightPile += Card.height;
+				} else {
+					Solitare.tableau[pileId - 6].heightPile += 30;
 				}
 				Solitare.tableau[pileId - 6].count++;
-				//System.out.println(topCard);
+				// System.out.println(topCard);
 				while (!curStack.isEmpty()) {
 					topCard = curStack.pop();
-					//System.out.println(topCard);
+					// System.out.println(topCard);
 					Solitare.tableau[pileId - 6].push(topCard);
-					if (Solitare.tableau[pileId - 6].count == 0){
-						Solitare.tableau[pileId - 6].heightPile+= Card.height;
-					}
-					else{
-						Solitare.tableau[pileId - 6].heightPile+= 30;
+					if (Solitare.tableau[pileId - 6].count == 0) {
+						Solitare.tableau[pileId - 6].heightPile += Card.height;
+					} else {
+						Solitare.tableau[pileId - 6].heightPile += 30;
 					}
 					Solitare.tableau[pileId - 6].count++;
 				}
-				//System.out.println(Solitare.tableau[pileId - 6].heightPile);
+				// System.out.println(Solitare.tableau[pileId - 6].heightPile);
 				topCard = top();
 				if (topCard != null && !topCard.isFaceUp()) {
 					topCard.flip();
@@ -125,16 +132,15 @@ class TablePile extends CardPile {
 		// else put it back on our pile
 		push(topCard);
 		count++;
-		if (count==1){
+		if (count == 1) {
 			heightPile = Card.height;
-		}
-		else{
-			heightPile+=30;
+		} else {
+			heightPile += 30;
 		}
 		while (!curStack.isEmpty()) {
 			topCard = curStack.pop();
 			this.push(topCard);
-			heightPile+=30;
+			heightPile += 30;
 			count++;
 		}
 	}
