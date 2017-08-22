@@ -31,7 +31,7 @@ class DiscardPile extends CardPile {
 			if (Solitare.tableau[pileId-6].canTake(topCard)) {
 				Solitare.tableau[pileId-6].push(topCard);
 				if (Solitare.tableau[pileId - 6].count == 0){
-					Solitare.tableau[pileId - 6].heightPile += 80 + Card.height;
+					Solitare.tableau[pileId - 6].heightPile += Card.height;
 				}
 				else{
 					Solitare.tableau[pileId - 6].heightPile+=30;

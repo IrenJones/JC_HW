@@ -60,7 +60,7 @@ class TablePile extends CardPile {
 		
 		CardPile curStack = new CardPile(x,y);
 		//int curCount = 0;
-		while (!this.isEmpty() && ty < heightPile-50) {
+		while (!this.isEmpty() && ty < heightPile-40) {
 			Card card = this.pop();
 			curStack.push(card);
 			count--;
