@@ -28,5 +28,11 @@ public class BlockingQueue<T> {
 
 		}
 	}
+	
+	public T takeDontProcessedTask() {
+		synchronized (items) {
+			return items.poll();
+		}
+	}
 
 }

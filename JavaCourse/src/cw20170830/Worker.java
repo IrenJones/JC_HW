@@ -12,6 +12,8 @@ public class Worker implements Executor {
 
 	Thread t;
 
+	boolean blocker = false;
+
 	BlockingQueue<Runnable> tasks = new BlockingQueue<>();
 
 	public Worker() {
@@ -21,7 +23,9 @@ public class Worker implements Executor {
 
 	@Override
 	public void execute(Runnable command) {
-		tasks.put(command);
+		if (!blocker) {
+			tasks.put(command);
+		}
 	}
 
 	private void processTasks() {
@@ -40,16 +44,16 @@ public class Worker implements Executor {
 
 	public List<Runnable> shutdownNow() {
 		List<Runnable> allTasks = new LinkedList<>();
-			if (!Thread.interrupted()) {
-				//TODO problem with waiting
-				Runnable taken = tasks.take();
-				while (taken != null) {
-					allTasks.add(taken);
-					taken = tasks.take();
-				}
-				t.interrupt();
-				tasks.put(POISON_PILL);
+		if (!Thread.interrupted()) {
+			Runnable taken = tasks.takeDontProcessedTask();
+			while (taken != null) {
+				allTasks.add(taken);
+				taken = tasks.takeDontProcessedTask();
 			}
+			t.interrupt();
+			tasks.put(POISON_PILL);
+		}
+		blocker = true;
 		return allTasks;
 	}
 }
