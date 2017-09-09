@@ -57,7 +57,6 @@ class TablePile extends CardPile {
 		}
 
 		CardPile curStack = new CardPile(x, y);
-		// int curCount = 0;
 		if (heightPile - ty < 70) {
 			Card card = this.pop();
 			curStack.push(card);
@@ -77,12 +76,9 @@ class TablePile extends CardPile {
 				} else {
 					heightPile -= 30;
 				}
-				// curCount++;
 			}
 		}
-		// System.out.println(tx + " :" + ty + " " + heightPile);
-		// System.out.println(curCount + " :" + count + " " +
-		// curStack.toString());
+
 		if (curStack.isEmpty()) {
 			return;
 		}
@@ -109,10 +105,8 @@ class TablePile extends CardPile {
 					Solitare.tableau[pileId - 6].heightPile += 30;
 				}
 				Solitare.tableau[pileId - 6].count++;
-				// System.out.println(topCard);
 				while (!curStack.isEmpty()) {
 					topCard = curStack.pop();
-					// System.out.println(topCard);
 					Solitare.tableau[pileId - 6].push(topCard);
 					if (Solitare.tableau[pileId - 6].count == 0) {
 						Solitare.tableau[pileId - 6].heightPile += Card.height;
@@ -121,7 +115,6 @@ class TablePile extends CardPile {
 					}
 					Solitare.tableau[pileId - 6].count++;
 				}
-				// System.out.println(Solitare.tableau[pileId - 6].heightPile);
 				topCard = top();
 				if (topCard != null && !topCard.isFaceUp()) {
 					topCard.flip();

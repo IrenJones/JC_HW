@@ -37,7 +37,6 @@ class DiscardPile extends CardPile {
 					Solitare.tableau[pileId - 6].heightPile+=30;
 				}
 				Solitare.tableau[pileId - 6].count++;
-				//System.out.println(Solitare.tableau[pileId - 6].heightPile);
 				return;
 			}
 		}

@@ -6,9 +6,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class Solitare extends Applet {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	Image bgImage;
